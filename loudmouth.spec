@@ -7,20 +7,21 @@ Summary:	Loudmouth - a Jabber library written in C
 Summary(pl):	Loudmouth - biblioteka do obs³ugi protoko³u Jabber napisana w C
 Name:		loudmouth
 Version:	0.15.1
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/loudmouth/0.15/%{name}-%{version}.tar.bz2
 # Source0-md5:	47fb6a7fe5eee61aa9917dde0b0c4af2
 Patch0:		%{name}-types.patch
 Patch1:		%{name}-nolibs.patch
+Patch2:		%{name}-gnutls.patch
 URL:		http://loudmouth.imendio.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	glib2-devel >= 2.2.0
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool
-%{?with_ssl:BuildRequires:	gnutls-devel >= 1.0.0}
+%{?with_ssl:BuildRequires:	gnutls-devel >= 1.0.6}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -38,10 +39,10 @@ protoko³u Jabber.
 Summary:	Header files and development documentation for Loudmouth library
 Summary(pl):	Pliki nag³ówkowe Loudmouth, dokumentacja dla programistów
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 2.2.0
 Requires:	gtk-doc-common
-%{?with_ssl:Requires:	gnutls-devel >= 1.0.0}
+%{?with_ssl:Requires:	gnutls-devel >= 1.0.6}
 
 %description devel
 This package provides the necessary header files to allow you to
@@ -55,7 +56,7 @@ z wykorzystaniem Loudmouth.
 Summary:	Static libraries for developing with Loudmouth
 Summary(pl):	Statyczne biblioteki Loudmouth
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 This package contains static version of Loudmouth libraries.
@@ -67,6 +68,7 @@ Statyczna wersja bibliotek Loudmouth.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%{?with_ssl:%patch2 -p1}
 
 %build
 %{__libtoolize}
