@@ -7,7 +7,7 @@ Summary:	Loudmouth - a Jabber library written in C
 Summary(pl):	Loudmouth - biblioteka do obs³ugi protoko³u Jabber napisana w C
 Name:		loudmouth
 Version:	0.14.1.99
-Release:	0.%{snap}.1
+Release:	0.%{snap}.2
 License:	LGPL
 Group:		Libraries
 Source0:	%{name}-%{version}-%{snap}.tar.gz
@@ -17,10 +17,10 @@ Patch1:		%{name}-nolibs.patch
 URL:		http://loudmouth.imendio.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	glib2-devel >= 2.0.0
+BuildRequires:	glib2-devel >= 2.2.0
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool
-%{?with_ssl:BuildRequires:	gnutls-devel >= 0.9.95}
+%{?with_ssl:BuildRequires:	gnutls-devel >= 1.0.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -39,9 +39,9 @@ Summary:	Header files and development documentation for Loudmouth library
 Summary(pl):	Pliki nag³ówkowe Loudmouth, dokumentacja dla programistów
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	glib2-devel >= 2.0.0
+Requires:	glib2-devel >= 2.2.0
 Requires:	gtk-doc-common
-%{?with_ssl:Requires:	gnutls-devel}
+%{?with_ssl:Requires:	gnutls-devel >= 1.0.0}
 
 %description devel
 This package provides the necessary header files to allow you to
