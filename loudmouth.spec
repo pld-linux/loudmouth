@@ -1,5 +1,5 @@
-Summary:	Loudmouth is a Jabber library written in C
-Summary(pl):	Loudmouth jest bibliotek± do obs³ugi protoko³u Jabber napisan± w C
+Summary:	Loudmouth - a Jabber library written in C
+Summary(pl):	Loudmouth - biblioteka do obs³ugi protoko³u Jabber napisana w C
 Name:		loudmouth
 Version:	0.9.1
 Release:	1.1
@@ -23,28 +23,28 @@ and yet extensible to let you do anything the Jabber protocol allows.
 %description -l pl
 Loudmouth jest lekk± i ³atw± w obs³udze bibliotek± napisan± w jêzyku
 C. S³u¿y do obs³ugi protoko³u Jabber. Zosta³a zaprojektowana z
-naciskiem na prostote obs³ugi, pozwala u¿ywaæ wszystkich mo¿liwo¶ci
+naciskiem na prostotê obs³ugi, pozwala u¿ywaæ wszystkich mo¿liwo¶ci
 protoko³u Jabber.
 
 %package devel
-Summary:        Header files and development documentation for Loudmouth library.
-Summary(pl):    Pliki nag³ówkowe Loudmouth, dokumentacja dla programistów.
+Summary:        Header files and development documentation for Loudmouth library
+Summary(pl):    Pliki nag³ówkowe Loudmouth, dokumentacja dla programistów
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	glib2-devel >= 2.0.0
 Requires:	gtk-doc-common
 
 %description devel
-This package provides the necessary development libraries and include
-files to allow you to develop with Loudmouth.
+This package provides the necessary header files to allow you to
+develop with Loudmouth.
 
 %description devel -l pl
 Pakiet zawiera pliki nag³ówkowe potrzebne do tworzenia oprogramowania
 z wykorzystaniem Loudmouth.
 
 %package static
-Summary:        Static libraries for developing with Loudmouth.
-Summary(pl):    Statyczne biblioteki Loudmouth.
+Summary:        Static libraries for developing with Loudmouth
+Summary(pl):    Statyczne biblioteki Loudmouth
 Group:          Development/Libraries
 Requires:       %{name}-devel = %{version}
 
@@ -70,6 +70,7 @@ rm -f missing
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	HTML_DIR=%{_gtkdocdir}
@@ -83,7 +84,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/libloudmouth.so.*
+%attr(755,root,root) %{_libdir}/libloudmouth.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
