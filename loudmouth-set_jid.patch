@@ -1,0 +1,102 @@
+diff -ur loudmouth-0.16/loudmouth/lm-connection.c loudmouth-0.16-/loudmouth/lm-connection.c
+--- loudmouth-0.16/loudmouth/lm-connection.c	2004-06-22 17:21:58.698461633 +0200
++++ loudmouth-0.16-/loudmouth/lm-connection.c	2004-06-22 17:23:45.682549345 +0200
+@@ -59,6 +59,7 @@
+ 	/* Parameters */
+ 	GMainContext *context;
+ 	gchar        *server;
++	gchar        *jid;
+ 	guint         port;
+ 
+ 	LmSSL        *ssl;
+@@ -268,6 +269,7 @@
+ 	LmConnection *connection = connect_data->connection;
+ 	LmMessage    *m;
+ 	GIOFlags      flags;
++	gchar        *server_from_jid;
+ 
+ 	/* Need some way to report error/success */
+ 	if (connection->cancel_open) {
+@@ -337,7 +339,12 @@
+ 		return FALSE;
+ 	}
+ 
+-	m = lm_message_new (connection->server, LM_MESSAGE_TYPE_STREAM);
++	if (connection->jid == NULL || strchr (connection->jid, '@') == NULL)
++		server_from_jid = connection->server;
++	else
++		server_from_jid = strchr (connection->jid, '@') + 1;
++
++	m = lm_message_new (server_from_jid, LM_MESSAGE_TYPE_STREAM);
+ 	lm_message_node_set_attributes (m->node,
+ 					"xmlns:stream", 
+ 					"http://etherx.jabber.org/streams",
+@@ -1417,6 +1424,22 @@
+ }
+ 
+ /**
++ * lm_connection_get_jid:
++ * @connection: an #LmConnection
++ * 
++ * Fetches the JID that @connection is using.
++ * 
++ * Return value: the jid.
++ **/
++const gchar *
++lm_connection_get_jid (LmConnection *connection)
++{
++	g_return_val_if_fail (connection != NULL, NULL);
++
++	return connection->jid;
++}
++
++/**
+  * lm_connection_set_server:
+  * @connection: an #LmConnection
+  * @server: Address of the server
+@@ -1442,6 +1465,31 @@
+ }
+ 
+ /**
++ * lm_connection_set_jid:
++ * @connection: an #LmConnection
++ * @jid: Jabber ID.
++ * 
++ * Sets the JID for @connection to @jid. Notice that @connection can't be open while doing this.
++ **/
++void
++lm_connection_set_jid (LmConnection *connection, const gchar *jid)
++{
++	g_return_if_fail (connection != NULL);
++	g_return_if_fail (jid != NULL);
++	
++	if (lm_connection_is_open (connection)) {
++		g_warning ("Can't change jid address while connected");
++		return;
++	}
++	
++	if (connection->jid) {
++		g_free (connection->jid);
++	}
++	
++	connection->jid = g_strdup (jid);
++}
++
++/**
+  * lm_connection_get_port:
+  * @connection: an #LmConnection
+  * 
+diff -ur loudmouth-0.16/loudmouth/lm-connection.h loudmouth-0.16-/loudmouth/lm-connection.h
+--- loudmouth-0.16/loudmouth/lm-connection.h	2004-03-17 23:15:04.000000000 +0100
++++ loudmouth-0.16-/loudmouth/lm-connection.h	2004-06-22 17:22:55.535501357 +0200
+@@ -112,6 +112,10 @@
+ void          lm_connection_set_server        (LmConnection       *connection,
+ 					       const gchar        *server);
+ 
++const gchar * lm_connection_get_jid           (LmConnection       *connection);
++void          lm_connection_set_jid           (LmConnection       *connection,
++					       const gchar        *jid);
++
+ guint         lm_connection_get_port          (LmConnection       *connection);
+ void          lm_connection_set_port          (LmConnection       *connection,
+ 					       guint               port);
