@@ -18,7 +18,7 @@ Patch2:		%{name}-gnutls.patch
 URL:		http://loudmouth.imendio.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	glib2-devel >= 2.2.0
+BuildRequires:	glib2-devel >= 2.4.0
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool
 %{?with_ssl:BuildRequires:	gnutls-devel >= 1.0.9}
@@ -40,7 +40,7 @@ Summary:	Header files and development documentation for Loudmouth library
 Summary(pl):	Pliki nag³ówkowe Loudmouth, dokumentacja dla programistów
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 2.2.0
+Requires:	glib2-devel >= 2.4.0
 Requires:	gtk-doc-common
 %{?with_ssl:Requires:	gnutls-devel >= 1.0.6}
 
