@@ -6,12 +6,12 @@
 Summary:	Loudmouth - a Jabber library written in C
 Summary(pl):	Loudmouth - biblioteka do obs³ugi protoko³u Jabber napisana w C
 Name:		loudmouth
-Version:	0.14.1.99
-Release:	0.%{snap}.2
+Version:	0.15.1
+Release:	0.1
 License:	LGPL
 Group:		Libraries
-Source0:	%{name}-%{version}-%{snap}.tar.gz
-# Source0-md5:	9b19bdbc0244135916f9cc3e167e2ac6
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/loudmouth/0.15/%{name}-%{version}.tar.bz2
+# Source0-md5:	47fb6a7fe5eee61aa9917dde0b0c4af2
 Patch0:		%{name}-types.patch
 Patch1:		%{name}-nolibs.patch
 URL:		http://loudmouth.imendio.org/
@@ -64,7 +64,7 @@ This package contains static version of Loudmouth libraries.
 Statyczna wersja bibliotek Loudmouth.
 
 %prep
-%setup -q -n %{name}-%{version}-%{snap}
+%setup -q
 %patch0 -p1
 %patch1 -p1
 
@@ -96,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/libloudmouth.so.*.*.*
+%attr(755,root,root) %{_libdir}/libloudmouth*.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
