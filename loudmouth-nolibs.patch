@@ -1,0 +1,13 @@
+--- loudmouth/configure.in.orig	2003-10-13 16:45:30.000000000 +0000
++++ loudmouth/configure.in	2003-11-22 14:32:22.000000000 +0000
+@@ -88,8 +88,8 @@
+ dnl +--------------------------------------------------------+
+ dnl | Checking for libnsl and libsocket need on some systems |-
+ dnl +--------------------------------------------------------+
+-AC_CHECK_LIB(nsl,gethostbyname)
+-AC_CHECK_LIB(socket,socket)
++AC_SEARCH_LIBS(gethostbyname,nsl)
++AC_SEARCH_LIBS(socket,socket)
+ 
+ dnl +--------------------------------------------------------+
+ dnl | Checking for SSL (through GnuTLS) support              |
