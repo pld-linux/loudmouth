@@ -8,11 +8,11 @@ Group:		Libraries
 Source0:	http://www.imendio.com/projects/loudmouth/src/%{name}-%{version}.tar.gz
 # Source0-md5:	909b0289c67a545d401b655fec58302e
 URL:		http://www.imendio.com/projects/loudmouth/
-BuildRequires:  autoconf
-BuildRequires:  automake
-BuildRequires:  glib2-devel
-BuildRequires:  gtk-doc
-BuildRequires:  libtool
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	glib2-devel
+BuildRequires:	gtk-doc
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -27,8 +27,8 @@ naciskiem na prostotê obs³ugi, pozwala u¿ywaæ wszystkich mo¿liwo¶ci
 protoko³u Jabber.
 
 %package devel
-Summary:        Header files and development documentation for Loudmouth library
-Summary(pl):    Pliki nag³ówkowe Loudmouth, dokumentacja dla programistów
+Summary:	Header files and development documentation for Loudmouth library
+Summary(pl):	Pliki nag³ówkowe Loudmouth, dokumentacja dla programistów
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
 Requires:	glib2-devel >= 2.0.0
@@ -43,10 +43,10 @@ Pakiet zawiera pliki nag³ówkowe potrzebne do tworzenia oprogramowania
 z wykorzystaniem Loudmouth.
 
 %package static
-Summary:        Static libraries for developing with Loudmouth
-Summary(pl):    Statyczne biblioteki Loudmouth
-Group:          Development/Libraries
-Requires:       %{name}-devel = %{version}
+Summary:	Static libraries for developing with Loudmouth
+Summary(pl):	Statyczne biblioteki Loudmouth
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}
 
 %description static
 This package contains static version of Loudmouth libraries.
