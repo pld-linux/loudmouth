@@ -1,0 +1,15 @@
+--- loudmouth/lm-connection.c.a	2004-08-29 12:37:26.528879408 +0200
++++ loudmouth/lm-connection.c	2004-08-29 12:38:07.184698784 +0200
+@@ -540,9 +540,11 @@
+ 		connection_stop_keep_alive (connection);
+ 	}
+ 
+-	connection->keep_alive_id = g_timeout_add (connection->keep_alive_rate,
++	if (connection->keep_alive_rate > 0) {
++		connection->keep_alive_id = g_timeout_add (connection->keep_alive_rate,
+ 						   (GSourceFunc) connection_send_keep_alive,
+ 						   connection);
++	}
+ }
+ 
+ static void
