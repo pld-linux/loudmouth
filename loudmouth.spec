@@ -2,16 +2,16 @@
 # Conditional build:
 %bcond_without ssl	# without SSL support
 #
+%define		snap	20031128
 Summary:	Loudmouth - a Jabber library written in C
 Summary(pl):	Loudmouth - biblioteka do obs³ugi protoko³u Jabber napisana w C
 Name:		loudmouth
 Version:	0.14.1.99
-%define cvs	20031019
-Release:	0.%{cvs}.4
+Release:	0.%{snap}.1
 License:	LGPL
 Group:		Libraries
-Source0:	%{name}-cvs-%{cvs}.tar.gz
-# Source0-md5:	843f50442185d68200391a965df9238c
+Source0:	%{name}-%{version}-%{snap}.tar.gz
+# Source0-md5:	9b19bdbc0244135916f9cc3e167e2ac6
 Patch0:		%{name}-types.patch
 Patch1:		%{name}-nolibs.patch
 URL:		http://loudmouth.imendio.org/
@@ -64,7 +64,7 @@ This package contains static version of Loudmouth libraries.
 Statyczna wersja bibliotek Loudmouth.
 
 %prep
-%setup -q -n %{name}
+%setup -q -n %{name}-%{version}-%{snap}
 %patch0 -p1
 %patch1 -p1
 
