@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without ssl	# without SSL support
+#
 Summary:	Loudmouth - a Jabber library written in C
 Summary(pl):	Loudmouth - biblioteka do obs³ugi protoko³u Jabber napisana w C
 Name:		loudmouth
@@ -13,6 +17,7 @@ BuildRequires:	automake
 BuildRequires:	glib2-devel
 BuildRequires:	gtk-doc
 BuildRequires:	libtool
+%{?with_ssl:BuildRequires:	gnutls-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -64,6 +69,7 @@ rm -f missing
 %{__autoconf}
 %{__automake}
 %configure \
+	%{!?with_ssl:--without-ssl} \
 	--enable-gtk-doc
 
 %{__make}
