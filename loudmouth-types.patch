@@ -1,15 +1,7 @@
---- loudmouth/loudmouth/lm-connection.c.orig	2003-10-13 10:28:59.000000000 +0000
-+++ loudmouth/loudmouth/lm-connection.c	2003-11-22 14:27:10.000000000 +0000
-@@ -345,7 +345,7 @@
- 					connection->gnutls_xcred);
- 		
- 		gnutls_transport_set_ptr (connection->gnutls_session, 
--					  (gnutls_transport_ptr) fd);
-+					  (gnutls_transport_ptr) (size_t) fd);
- 
- 		ret = gnutls_handshake (connection->gnutls_session);
- 		
-@@ -426,7 +426,7 @@
+diff -Nur loudmouth-0.15.1.orig/loudmouth/lm-connection.c loudmouth-0.15.1/loudmouth/lm-connection.c
+--- loudmouth-0.15.1.orig/loudmouth/lm-connection.c	2004-01-21 16:53:08.000000000 +0100
++++ loudmouth-0.15.1/loudmouth/lm-connection.c	2004-01-23 12:37:39.336766584 +0100
+@@ -595,7 +595,7 @@
  		     LmConnection *connection)
  {
  	gchar     buf[IN_BUFFER_SIZE];
@@ -18,7 +10,7 @@
  	GIOStatus status;
         
  	if (!connection->io_channel) {
-@@ -491,7 +491,7 @@
+@@ -644,7 +644,7 @@
  	g_log (LM_LOG_DOMAIN, LM_LOG_LEVEL_NET, 
  	       "-----------------------------------\n");
  
