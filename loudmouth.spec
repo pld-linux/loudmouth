@@ -1,22 +1,24 @@
 #
 # Conditional build:
 %bcond_without ssl	# without SSL support
-%define cvs 20031019
 #
 Summary:	Loudmouth - a Jabber library written in C
 Summary(pl):	Loudmouth - biblioteka do obs³ugi protoko³u Jabber napisana w C
 Name:		loudmouth
 Version:	0.14.1.99
-Release:	0.%{cvs}.3
+%define cvs	20031019
+Release:	0.%{cvs}.4
 License:	LGPL
 Group:		Libraries
 Source0:	%{name}-cvs-%{cvs}.tar.gz
 # Source0-md5:	843f50442185d68200391a965df9238c
+Patch0:		%{name}-types.patch
+Patch1:		%{name}-nolibs.patch
 URL:		http://loudmouth.imendio.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	glib2-devel
-BuildRequires:	gtk-doc
+BuildRequires:	glib2-devel >= 2.0.0
+BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool
 %{?with_ssl:BuildRequires:	gnutls-devel >= 0.9.95}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -63,13 +65,14 @@ Statyczna wersja bibliotek Loudmouth.
 
 %prep
 %setup -q -n %{name}
+%patch0 -p1
+%patch1 -p1
 
 %build
-rm -f missing
-touch config.h.in
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure \
 	%{!?with_ssl:--without-ssl} \
