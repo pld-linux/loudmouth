@@ -2,20 +2,19 @@
 # TODO: dotnet-loudmouth-sharp
 #
 # Conditional build:
-%bcond_without ssl	# without SSL support
+%bcond_without	ssl	# without SSL support
 #
 %define		snap	20031128
 Summary:	Loudmouth - a Jabber library written in C
 Summary(pl):	Loudmouth - biblioteka do obs³ugi protoko³u Jabber napisana w C
 Name:		loudmouth
-Version:	0.17.2
+Version:	0.90
 Release:	1
 License:	LGPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/loudmouth/0.17/%{name}-%{version}.tar.bz2
-# Source0-md5:	db5dd069f3c7de18d5347ebaaee4ad61
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/loudmouth/0.90/%{name}-%{version}.tar.bz2
+# Source0-md5:	8d1cc61764bf05cdb86ba2659df30069
 Patch0:		%{name}-nolibs.patch
-Patch1:		%{name}-gnutls.patch
 URL:		http://loudmouth.imendio.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -69,7 +68,6 @@ Statyczna wersja bibliotek Loudmouth.
 %prep
 %setup -q
 %patch0 -p1
-%{?with_ssl:%patch1 -p1}
 
 %build
 %{__libtoolize}
