@@ -19,9 +19,10 @@ URL:		http://loudmouth.imendio.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	glib2-devel >= 1:2.4.0
+%{?with_ssl:BuildRequires:	gnutls-devel >= 1.0.9}
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool
-%{?with_ssl:BuildRequires:	gnutls-devel >= 1.0.9}
+BuildRequires:	pkgconfig
 Requires:	glib2 >= 1:2.4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
