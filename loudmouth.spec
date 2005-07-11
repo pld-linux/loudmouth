@@ -9,7 +9,7 @@ Summary:	Loudmouth - a Jabber library written in C
 Summary(pl):	Loudmouth - biblioteka do obs³ugi protoko³u Jabber napisana w C
 Name:		loudmouth
 Version:	0.90
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/loudmouth/0.90/%{name}-%{version}.tar.bz2
@@ -19,7 +19,7 @@ URL:		http://loudmouth.imendio.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	glib2-devel >= 1:2.4.0
-%{?with_ssl:BuildRequires:	gnutls-devel >= 1.0.9}
+%{?with_ssl:BuildRequires:	gnutls-devel >= 1.2.5}
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
