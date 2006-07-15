@@ -4,12 +4,11 @@
 # Conditional build:
 %bcond_without	ssl	# without SSL support
 #
-%define		snap	20031128
 Summary:	Loudmouth - a Jabber library written in C
 Summary(pl):	Loudmouth - biblioteka do obs³ugi protoko³u Jabber napisana w C
 Name:		loudmouth
 Version:	1.0.4
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/loudmouth/1.0/%{name}-%{version}.tar.bz2
@@ -18,12 +17,12 @@ Patch0:		%{name}-nolibs.patch
 URL:		http://loudmouth.imendio.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	glib2-devel >= 1:2.4.0
+BuildRequires:	glib2-devel >= 1:2.12.0
 %{?with_ssl:BuildRequires:	gnutls-devel >= 1.2.5}
-BuildRequires:	gtk-doc >= 1.0
+BuildRequires:	gtk-doc >= 1.6
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-Requires:	glib2 >= 1:2.4.0
+Requires:	glib2 >= 1:2.12.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -42,9 +41,9 @@ Summary:	Header files and development documentation for Loudmouth library
 Summary(pl):	Pliki nag³ówkowe Loudmouth, dokumentacja dla programistów
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.4.0
+Requires:	glib2-devel >= 1:2.12.0
 Requires:	gtk-doc-common
-%{?with_ssl:Requires:	gnutls-devel >= 1.0.6}
+%{?with_ssl:Requires:	gnutls-devel >= 1.2.5}
 
 %description devel
 This package provides the necessary header files to allow you to
@@ -76,6 +75,7 @@ Statyczna wersja bibliotek Loudmouth.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure \
 	%{!?with_ssl:--without-ssl} \
 	--enable-gtk-doc
