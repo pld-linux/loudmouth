@@ -1,28 +1,26 @@
 #
-# TODO: dotnet-loudmouth-sharp
-#
 # Conditional build:
 %bcond_without	ssl	# without SSL support
 #
 Summary:	Loudmouth - a Jabber library written in C
 Summary(pl):	Loudmouth - biblioteka do obs³ugi protoko³u Jabber napisana w C
 Name:		loudmouth
-Version:	1.0.4
-Release:	2
+Version:	1.0.5
+Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/loudmouth/1.0/%{name}-%{version}.tar.bz2
-# Source0-md5:	6a1e592418686ff4ead975e6d28a4beb
+# Source0-md5:	1e97102dd6d8a09d2edf33df14c9047e
 Patch0:		%{name}-nolibs.patch
 URL:		http://loudmouth.imendio.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	glib2-devel >= 1:2.12.0
+BuildRequires:	glib2-devel >= 1:2.12.3
 %{?with_ssl:BuildRequires:	gnutls-devel >= 1.2.5}
-BuildRequires:	gtk-doc >= 1.6
+BuildRequires:	gtk-doc >= 1.7
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-Requires:	glib2 >= 1:2.12.0
+Requires:	glib2 >= 1:2.12.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -41,7 +39,7 @@ Summary:	Header files and development documentation for Loudmouth library
 Summary(pl):	Pliki nag³ówkowe Loudmouth, dokumentacja dla programistów
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.12.0
+Requires:	glib2-devel >= 1:2.12.3
 Requires:	gtk-doc-common
 %{?with_ssl:Requires:	gnutls-devel >= 1.2.5}
 
@@ -75,11 +73,9 @@ Statyczna wersja bibliotek Loudmouth.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure \
 	%{!?with_ssl:--without-ssl} \
 	--enable-gtk-doc
-
 %{__make}
 
 %install
