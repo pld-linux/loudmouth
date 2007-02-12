@@ -3,7 +3,7 @@
 %bcond_without	ssl	# without SSL support
 #
 Summary:	Loudmouth - a Jabber library written in C
-Summary(pl):	Loudmouth - biblioteka do obs≥ugi protoko≥u Jabber napisana w C
+Summary(pl.UTF-8):   Loudmouth - biblioteka do obs≈Çugi protoko≈Çu Jabber napisana w C
 Name:		loudmouth
 Version:	1.0.5
 Release:	1
@@ -28,15 +28,15 @@ Loudmouth is a lightweight and easy-to-use C library for programming
 with the Jabber protocol. It's designed to be easy to get started with
 and yet extensible to let you do anything the Jabber protocol allows.
 
-%description -l pl
-Loudmouth jest lekk± i ≥atw± w obs≥udze bibliotek± napisan± w jÍzyku
-C. S≥uøy do obs≥ugi protoko≥u Jabber. Zosta≥a zaprojektowana z
-naciskiem na prostotÍ obs≥ugi, pozwala uøywaÊ wszystkich moøliwo∂ci
-protoko≥u Jabber.
+%description -l pl.UTF-8
+Loudmouth jest lekkƒÖ i ≈ÇatwƒÖ w obs≈Çudze bibliotekƒÖ napisanƒÖ w jƒôzyku
+C. S≈Çu≈ºy do obs≈Çugi protoko≈Çu Jabber. Zosta≈Ça zaprojektowana z
+naciskiem na prostotƒô obs≈Çugi, pozwala u≈ºywaƒá wszystkich mo≈ºliwo≈õci
+protoko≈Çu Jabber.
 
 %package devel
 Summary:	Header files and development documentation for Loudmouth library
-Summary(pl):	Pliki nag≥Ûwkowe Loudmouth, dokumentacja dla programistÛw
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe Loudmouth, dokumentacja dla programist√≥w
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.12.3
@@ -47,20 +47,20 @@ Requires:	gtk-doc-common
 This package provides the necessary header files to allow you to
 develop with Loudmouth.
 
-%description devel -l pl
-Pakiet zawiera pliki nag≥Ûwkowe potrzebne do tworzenia oprogramowania
+%description devel -l pl.UTF-8
+Pakiet zawiera pliki nag≈Ç√≥wkowe potrzebne do tworzenia oprogramowania
 z wykorzystaniem Loudmouth.
 
 %package static
 Summary:	Static libraries for developing with Loudmouth
-Summary(pl):	Statyczne biblioteki Loudmouth
+Summary(pl.UTF-8):   Statyczne biblioteki Loudmouth
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 This package contains static version of Loudmouth libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna wersja bibliotek Loudmouth.
 
 %prep
