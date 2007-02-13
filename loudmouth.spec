@@ -3,7 +3,7 @@
 %bcond_without	ssl	# without SSL support
 #
 Summary:	Loudmouth - a Jabber library written in C
-Summary(pl.UTF-8):   Loudmouth - biblioteka do obsługi protokołu Jabber napisana w C
+Summary(pl.UTF-8):	Loudmouth - biblioteka do obsługi protokołu Jabber napisana w C
 Name:		loudmouth
 Version:	1.0.5
 Release:	1
@@ -36,7 +36,7 @@ protokołu Jabber.
 
 %package devel
 Summary:	Header files and development documentation for Loudmouth library
-Summary(pl.UTF-8):   Pliki nagłówkowe Loudmouth, dokumentacja dla programistów
+Summary(pl.UTF-8):	Pliki nagłówkowe Loudmouth, dokumentacja dla programistów
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.12.3
@@ -53,7 +53,7 @@ z wykorzystaniem Loudmouth.
 
 %package static
 Summary:	Static libraries for developing with Loudmouth
-Summary(pl.UTF-8):   Statyczne biblioteki Loudmouth
+Summary(pl.UTF-8):	Statyczne biblioteki Loudmouth
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
