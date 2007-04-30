@@ -1,5 +1,6 @@
 #
 # Conditional build:
+%bcond_without	apidocs	# disable gtk-doc
 %bcond_without	ssl	# without SSL support
 #
 Summary:	Loudmouth - a Jabber library written in C
@@ -16,7 +17,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	glib2-devel >= 1:2.12.3
 %{?with_ssl:BuildRequires:	gnutls-devel >= 1.2.5}
-BuildRequires:	gtk-doc >= 1.7
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.7}
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 Requires:	glib2 >= 1:2.12.3
@@ -40,7 +41,6 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.12.3
 %{?with_ssl:Requires:	gnutls-devel >= 1.2.5}
-Requires:	gtk-doc-common
 
 %description devel
 This package provides the necessary header files to allow you to
@@ -62,6 +62,18 @@ This package contains static version of Loudmouth libraries.
 %description static -l pl.UTF-8
 Statyczna wersja bibliotek Loudmouth.
 
+%package apidocs
+Summary:	Loudmouth library API documentation
+Summary(pl.UTF-8):	Dokumentacja API biblioteki Loudmouth.
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+Loudmouth library API documentation.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API biblioteki Loudmouth.
+
 %prep
 %setup -q
 
@@ -73,7 +85,7 @@ Statyczna wersja bibliotek Loudmouth.
 %{__automake}
 %configure \
 	%{!?with_ssl:--without-ssl} \
-	--enable-gtk-doc
+	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc
 %{__make}
 
 %install
@@ -82,6 +94,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	HTML_DIR=%{_gtkdocdir}
+
+%{!?with_apidocs:rm -rf $RPM_BUILD_ROOT%{_gtkdocdir}}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -100,8 +114,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/*.la
 %{_pkgconfigdir}/*
 %{_includedir}/loudmouth-1.0
-%{_gtkdocdir}/*
 
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/%{name}
+%endif
