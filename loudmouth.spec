@@ -85,6 +85,7 @@ Dokumentacja API biblioteki Loudmouth.
 %{__automake}
 %configure \
 	%{!?with_ssl:--without-ssl} \
+	--with-asyncns \
 	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc
 %{__make}
 
