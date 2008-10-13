@@ -6,18 +6,19 @@
 Summary:	Loudmouth - a Jabber library written in C
 Summary(pl.UTF-8):	Loudmouth - biblioteka do obsługi protokołu Jabber napisana w C
 Name:		loudmouth
-Version:	1.4.0
+Version:	1.4.2
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/loudmouth/1.4/%{name}-%{version}.tar.bz2
-# Source0-md5:	d9504bb4251d4e5b32cb379debda634d
+# Source0-md5:	f95567c096cd9eb992ddbdb2fab402c8
 URL:		http://loudmouth.imendio.org/
-BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.59
+BuildRequires:	automake >= 1:1.9
 BuildRequires:	glib2-devel >= 1:2.12.3
 %{?with_ssl:BuildRequires:	gnutls-devel >= 1.2.5}
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.7}
+BuildRequires:	libidn-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 Requires:	glib2 >= 1:2.12.3
@@ -112,14 +113,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so
-%{_libdir}/*.la
-%{_pkgconfigdir}/*
+%attr(755,root,root) %{_libdir}/libloudmouth-1.so
+%{_libdir}/libloudmouth-1.la
+%{_pkgconfigdir}/loudmouth-1.0.pc
 %{_includedir}/loudmouth-1.0
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libloudmouth-1.a
 
 %if %{with apidocs}
 %files apidocs
