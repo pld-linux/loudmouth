@@ -8,22 +8,27 @@ Summary(pl.UTF-8):	Loudmouth - biblioteka do obsługi protokołu Jabber napisana
 Name:		loudmouth
 Version:	1.4.3
 Release:	4
-License:	LGPL
+License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/loudmouth/1.4/%{name}-%{version}.tar.bz2
 # Source0-md5:	55339ca42494690c3942ee1465a96937
 Patch0:		%{name}-async_crash.patch
 Patch1:		%{name}-use-gnutls-pc.patch
-URL:		http://loudmouth.imendio.org/
+Patch2:		%{name}-glib.patch
+Patch3:		%{name}-link.patch
+URL:		https://github.com/mhallendal/loudmouth
+# not available (Nov 2013)
+#URL:		http://loudmouth.imendio.org/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	glib2-devel >= 1:2.12.3
-%{?with_ssl:BuildRequires:	gnutls-devel >= 1.2.5}
+%{?with_ssl:BuildRequires:	gnutls-devel >= 1.4.0}
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.7}
 BuildRequires:	libidn-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 Requires:	glib2 >= 1:2.12.3
+%{?with_ssl:Requires:	gnutls >= 1.4.0}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -43,7 +48,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe Loudmouth, dokumentacja dla programistów
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.12.3
-%{?with_ssl:Requires:	gnutls-devel >= 1.2.5}
+%{?with_ssl:Requires:	gnutls-devel >= 1.4.0}
 
 %description devel
 This package provides the necessary header files to allow you to
@@ -67,7 +72,7 @@ Statyczna wersja bibliotek Loudmouth.
 
 %package apidocs
 Summary:	Loudmouth library API documentation
-Summary(pl.UTF-8):	Dokumentacja API biblioteki Loudmouth.
+Summary(pl.UTF-8):	Dokumentacja API biblioteki Loudmouth
 Group:		Documentation
 Requires:	gtk-doc-common
 
@@ -81,6 +86,8 @@ Dokumentacja API biblioteki Loudmouth.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 %{__libtoolize}
@@ -91,7 +98,7 @@ Dokumentacja API biblioteki Loudmouth.
 %configure \
 	%{!?with_ssl:--without-ssl} \
 	--with-asyncns \
-	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc
+	--enable-gtk-doc%{!?with_apidocs:=no}
 %{__make}
 
 %install
