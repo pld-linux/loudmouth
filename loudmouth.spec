@@ -16,6 +16,7 @@ Patch0:		%{name}-async_crash.patch
 Patch1:		%{name}-use-gnutls-pc.patch
 Patch2:		%{name}-glib.patch
 Patch3:		%{name}-link.patch
+Patch4:		%{name}-gnutls.patch
 URL:		https://github.com/mhallendal/loudmouth
 # not available (Nov 2013)
 #URL:		http://loudmouth.imendio.org/
@@ -91,6 +92,7 @@ Dokumentacja API biblioteki Loudmouth.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 %{__libtoolize}
