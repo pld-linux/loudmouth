@@ -83,9 +83,7 @@ Summary:	Loudmouth library API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki Loudmouth
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 Loudmouth library API documentation.
