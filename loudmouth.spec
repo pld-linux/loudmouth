@@ -14,17 +14,17 @@
 Summary:	Loudmouth - a Jabber library written in C
 Summary(pl.UTF-8):	Loudmouth - biblioteka do obsługi protokołu Jabber napisana w C
 Name:		loudmouth
-Version:	1.5.3
+Version:	1.5.4
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://mcabber.com/files/loudmouth/%{name}-%{version}.tar.bz2
-# Source0-md5:	0db0ce1c5a57f81b5736be8bd2217a82
+# Source0-md5:	59c9f9f8e6231f38e18876447c608620
 Patch0:		%{name}-link.patch
 URL:		https://github.com/mcabber/loudmouth/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	glib2-devel >= 1:2.12.4
+BuildRequires:	glib2-devel >= 1:2.38.0
 %{?with_gnutls:BuildRequires:	gnutls-devel >= 3.0.20}
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.14}
 BuildRequires:	heimdal-devel
@@ -33,7 +33,7 @@ BuildRequires:	libidn-devel
 BuildRequires:	libtool
 %{?with_openssl:BuildRequires:	openssl-devel}
 BuildRequires:	pkgconfig
-Requires:	glib2 >= 1:2.12.4
+Requires:	glib2 >= 1:2.38.0
 %{?with_gnutls:Requires:	gnutls >= 3.0.20}
 %{?with_asyncns:Requires:	libasyncns >= 0.3}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -54,7 +54,7 @@ Summary:	Header files and development documentation for Loudmouth library
 Summary(pl.UTF-8):	Pliki nagłówkowe Loudmouth, dokumentacja dla programistów
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 1:2.12.4
+Requires:	glib2-devel >= 1:2.38.0
 %{?with_asyncns:Requires:	libasyncns-devel >= 0.3}
 Requires:	libidn-devel
 
@@ -102,8 +102,10 @@ Dokumentacja API biblioteki Loudmouth.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+# default value for with-compile-warnings is "error", which breaks build on glib deprecations
 %configure \
 	%{?with_asyncns:--with-asyncns} \
+	--with-compile-warnings=yes \
 	%{!?with_ssl:--without-ssl} \
 	%{?with_openssl:--with-ssl=openssl} \
 	--enable-gtk-doc%{!?with_apidocs:=no}
